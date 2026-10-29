@@ -1,0 +1,289 @@
+### Technology Stack (Mandatory)
+
+Use the following stack:
+
+- Next.js with App Router.
+- React and TypeScript.
+- Material UI (MUI) for components and styling.
+- Framer Motion for animations.
+- MUI Icons for icons.
+- Cairo font for Arabic and Poppins for French.
+- Vercel for deployment.
+
+Technical constraints:
+- Do not use Tailwind CSS.
+- Do not introduce an unnecessary backend or database.
+- Implement WhatsApp ordering using the WhatsApp click-to-chat URL.
+- Use reusable, modular components.
+- Configure proper Arabic RTL and French LTR support, including MUI theme direction.
+- Use Next.js metadata for SEO.
+- Prioritize performance, accessibility, responsive design, and maintainability.
+- Use Server Components by default and Client Components only where interactivity is required.
+
+# Project: Oussama Eloualy – Delivery Service Website
+
+Act as a senior full-stack developer and UI/UX designer. Your task is to build a modern, professional, responsive delivery service website for a local delivery business called **Oussama Eloualy Livraison**.
+
+## 1. Design Reference and Branding
+
+I have provided a reference image. Study it carefully before implementing the website.
+
+Use the image as the primary source of inspiration for the website's visual identity.
+
+**Brand identity:**
+- Business name: Oussama Eloualy
+- Business activity: Delivery service (Livraison)
+- Main colors: Black, yellow/gold, and white.
+- Visual style: Bold, modern, sporty, energetic, premium, and professional.
+- Main visual elements: Motorcycle delivery, delivery rider, black brush-stroke backgrounds, yellow accents, bold typography, and strong contrast.
+- The design should communicate speed, safety, reliability, and professionalism.
+
+Do not simply put the reference image on the homepage as a background. Recreate its visual identity through actual website components, typography, layouts, buttons, icons, and sections.
+
+Use the uploaded reference image for visual inspiration and, if appropriate, as a promotional hero image.
+
+## 2. Business Information
+
+Extract and use the following information from the reference image:
+
+**Business name:** Oussama Eloualy
+
+**Phone number:** 0646398986
+
+**Location:** Chouiter (شويطر), Marrakech (مراكش), Morocco.
+
+**Main slogan:**
+- French: Livraison rapide, sûre, partout.
+- Arabic: طلبك يوصل بأمان وثقة.
+
+**Main services:**
+- Livraison à temps (On-time delivery).
+- Livraison rapide (Fast delivery).
+- Livraison sécurisée (Safe delivery).
+- Delivery for all types of orders.
+
+Use the phone number as the main contact method.
+
+Add functional phone and WhatsApp links:
+- Phone: +212646398986
+- WhatsApp: https://wa.me/212646398986
+
+Do not invent additional contact information, addresses, opening hours, prices, or business claims.
+
+## 3. Website Structure
+
+Build a complete landing page with the following sections:
+
+### A. Navigation Bar
+- Business logo/name.
+- Home.
+- Services.
+- About Us.
+- Contact.
+- A prominent "Order Now" button.
+- Responsive mobile navigation.
+- Support Arabic RTL navigation when Arabic is selected.
+
+### B. Hero Section
+
+This is the most important section.
+
+Create an impressive hero section inspired by the reference image.
+
+Requirements:
+- Large, visually striking delivery rider/motorcycle image.
+- Black and yellow visual composition.
+- Business name: Oussama Eloualy.
+- Main headline: "Fast, Safe & Reliable Delivery".
+- Arabic alternative: "توصيل سريع، آمن وموثوق".
+- Short description explaining the delivery service.
+- Two prominent CTA buttons:
+  1. Order via WhatsApp.
+  2. Call Now.
+- Location indicator: Chouiter – Marrakech.
+
+The hero should immediately communicate what the business does.
+
+### C. Why Choose Us?
+
+Create a section presenting the main advantages:
+
+1. On-Time Delivery – توصيل في الوقت.
+2. Fast Delivery – توصيل سريع.
+3. Safe Delivery – توصيل آمن.
+4. Reliable Service – خدمة موثوقة.
+
+Use attractive icons and subtle animations.
+
+### D. Our Services
+
+Showcase the available delivery services.
+
+Include:
+- General delivery.
+- Personal orders.
+- Package delivery.
+- Local delivery.
+
+Keep the descriptions generic and do not invent services that require confirmation from the business owner.
+
+Each service should have a modern card with an icon, title, and short description.
+
+### E. About Us
+
+Introduce Oussama Eloualy as a local delivery service operating in Chouiter, Marrakech.
+
+Emphasize:
+- Commitment to customer satisfaction.
+- Speed and reliability.
+- Safe handling of orders.
+- Personal and professional service.
+
+Use a friendly but professional tone.
+
+### F. How It Works
+
+Create a simple three-step process:
+
+1. Contact us – Get in touch by WhatsApp or phone.
+2. Share your order – Tell us what needs to be delivered and where.
+3. Receive your delivery – Your order arrives safely.
+
+Make the process visually clear and easy to understand.
+
+### G. Contact Section
+
+This section must be highly visible.
+
+Include:
+- Business name: Oussama Eloualy.
+- Phone: 0646398986.
+- Location: Chouiter, Marrakech, Morocco.
+- WhatsApp contact button.
+- Click-to-call button.
+
+Add a contact/order form with:
+- Customer name.
+- Phone number.
+- Pickup location.
+- Delivery destination.
+- Order description.
+- Additional notes.
+
+When the customer submits the form, generate a formatted WhatsApp message containing the submitted information and redirect them to WhatsApp.
+
+Do not pretend an order has been stored or confirmed by a backend.
+
+### H. Footer
+
+Include:
+- Business name and branding.
+- Navigation links.
+- Phone number.
+- Location.
+- WhatsApp contact.
+- Copyright information.
+
+Use a clean black footer with yellow accents.
+
+## 4. Language Support
+
+The website should support:
+
+- Arabic (default language).
+- French.
+
+Add a language switcher in the navigation bar.
+
+Important:
+- Arabic must use proper RTL layout.
+- French must use LTR layout.
+- Translate all navigation items, buttons, headings, descriptions, forms, and notifications.
+- Switching languages must update the entire interface, not just the navigation.
+- Use appropriate Arabic typography.
+
+## 5. UI/UX Requirements
+
+The website must look like a professionally designed business website, not a generic template.
+
+Design guidelines:
+- Black backgrounds with yellow/gold highlights.
+- White text for readability.
+- Bold typography.
+- Strong visual hierarchy.
+- Large, attractive hero section.
+- Rounded buttons with smooth hover effects.
+- Modern service cards.
+- Consistent spacing.
+- High-quality motorcycle/delivery imagery.
+- Subtle animations and transitions.
+- Smooth scrolling.
+- Responsive design for desktop, tablet, and mobile.
+
+Avoid:
+- Excessive gradients.
+- Generic blue corporate designs.
+- Too many unnecessary animations.
+- Cluttered layouts.
+- Huge blocks of text.
+- Generic template-like sections.
+
+## 6. Technical Requirements
+
+Before writing code:
+
+1. Inspect the existing project and understand its structure.
+2. Identify the framework, installed dependencies, and existing conventions.
+3. Reuse the existing architecture instead of unnecessarily replacing it.
+4. Implement the website using the technologies already present in the project.
+
+Prefer:
+- React / Next.js with TypeScript if the project uses them.
+- Material UI if already installed.
+- Reusable components.
+- Clean and maintainable code.
+- Proper component organization.
+- Responsive CSS.
+- Semantic HTML.
+- Accessible buttons, forms, and navigation.
+
+Do not introduce Tailwind CSS.
+
+Do not install unnecessary dependencies.
+
+## 7. Functional Requirements
+
+Make sure that:
+
+- WhatsApp buttons actually open the correct WhatsApp conversation.
+- Phone buttons open the device's calling interface.
+- Language switching works correctly.
+- Arabic RTL and French LTR layouts work correctly.
+- Navigation links scroll to their respective sections.
+- The order form validates required fields.
+- Form submission generates a correctly formatted WhatsApp message.
+- Mobile navigation works.
+- All interactive elements work on mobile and desktop.
+
+## 8. Final Quality Expectations
+
+The result should feel like a real, established local delivery brand.
+
+Prioritize:
+1. Excellent visual design.
+2. Strong resemblance to the reference image's branding.
+3. Professional presentation.
+4. Excellent mobile experience.
+5. Functional WhatsApp integration.
+6. Proper Arabic and French localization.
+7. Clean, maintainable implementation.
+
+Do not stop after creating a basic homepage or a static mockup.
+
+Implement the complete website, run the available build/lint checks, fix any errors, and verify the main interactions.
+
+Make reasonable design decisions independently instead of asking me about every small detail.
+
+**Final goal:** Create a premium delivery service website for Oussama Eloualy that makes customers trust the business, understand its services immediately, and contact the delivery rider easily through WhatsApp or phone.
+
+

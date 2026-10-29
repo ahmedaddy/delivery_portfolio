@@ -1,69 +1,32 @@
-import Image from "next/image";
+"use client";
+import { FormEvent, useMemo, useState } from "react";
+import { AccessTimeRounded, CallRounded, CheckCircleRounded, CloseRounded, DirectionsBikeRounded, LanguageRounded, LocalMallRounded, LocationOnRounded, MenuRounded, NavigationRounded, PersonRounded, PhoneInTalkRounded, SecurityRounded, SendRounded, SpeedRounded, WhatsApp } from "@mui/icons-material";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { CssBaseline, IconButton, TextField } from "@mui/material";
+import { motion } from "framer-motion";
 
-export default function Home() {
-  return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
-  );
+type Lang = "ar" | "fr";
+const phone="+212646398986", wa="https://wa.me/212646398986";
+const copy = {
+ ar:{nav:["الرئيسية","خدماتنا","من نحن","تواصل معنا"],order:"اطلب الآن",brand:"خدمة التوصيل",eyebrow:"توصيل محلي احترافي",hero:"توصيل سريع، آمن وموثوق",desc:"من شويطر إلى مراكش، نوصل طلبك بعناية وسرعة تستحقها.",whats:"اطلب عبر واتساب",call:"اتصل الآن",location:"شويطر — مراكش",trust:"طلبك يوصل بأمان وثقة",why:"لماذا تختارنا؟",whyDesc:"لأن كل طلب يستحق خدمة دقيقة وموثوقة.",advantages:[["توصيل في الوقت","نحترم وقتك في كل طلب."],["توصيل سريع","حل مرن لاحتياجاتك اليومية."],["توصيل آمن","نهتم بطلبك من البداية للنهاية."],["خدمة موثوقة","تعامل شخصي واحترافي."]],services:"خدماتنا",serviceDesc:"خدمات توصيل بسيطة وواضحة، مصممة لتجعل يومك أسهل.",serviceList:[["توصيل عام","لجميع أنواع الطلبات."],["طلبات شخصية","نساعدك في توصيل احتياجاتك."],["توصيل الطرود","لطرودك بعناية واهتمام."],["توصيل محلي","داخل شويطر ومراكش."]],about:"عن Oussama Eloualy",aboutDesc:"خدمة توصيل محلية تعمل بروح شخصية واحترافية. نركز على رضاك، السرعة في التنفيذ، والتعامل الآمن مع كل طلب.",stat:"معك في كل مشوار",how:"كيف نعمل؟",howDesc:"ثلاث خطوات بسيطة حتى يصل طلبك.",steps:[["تواصل معنا","راسلنا عبر واتساب أو اتصل بنا."],["شارك طلبك","أخبرنا بما تريد ومكان التوصيل."],["استلم طلبك","يصلك طلبك بأمان."]],contact:"جاهز لإرسال طلبك؟",contactDesc:"املأ التفاصيل وسنفتح رسالة واتساب جاهزة لإرسالها.",fields:["الاسم الكامل","رقم الهاتف","مكان الاستلام","وجهة التوصيل","وصف الطلب","ملاحظات إضافية"],submit:"إرسال الطلب عبر واتساب",error:"يرجى ملء الحقول المطلوبة.",footer:"توصيل سريع، آمن، وفي الوقت.",rights:"جميع الحقوق محفوظة.",menu:"فتح القائمة",close:"إغلاق القائمة"},
+ fr:{nav:["Accueil","Services","À propos","Contact"],order:"Commander",brand:"Service de livraison",eyebrow:"LIVRAISON LOCALE PROFESSIONNELLE",hero:"Livraison rapide, sûre et fiable",desc:"De Chouiter à Marrakech, votre commande est livrée avec soin et à la vitesse qu’elle mérite.",whats:"Commander sur WhatsApp",call:"Appeler maintenant",location:"Chouiter — Marrakech",trust:"Votre commande arrive en sécurité.",why:"Pourquoi nous choisir ?",whyDesc:"Parce que chaque commande mérite un service précis et fiable.",advantages:[["À l’heure","Nous respectons votre temps."],["Livraison rapide","Une réponse flexible au quotidien."],["Livraison sûre","Votre commande est suivie avec soin."],["Service fiable","Un accompagnement personnel et pro."]],services:"Nos services",serviceDesc:"Des livraisons simples et claires pour vous faciliter la journée.",serviceList:[["Livraison générale","Pour tous types de commandes."],["Commandes personnelles","Nous livrons vos besoins du quotidien."],["Livraison de colis","Vos colis, avec attention."],["Livraison locale","À Chouiter et Marrakech."]],about:"À propos d’Oussama Eloualy",aboutDesc:"Un service local pensé avec proximité et professionnalisme. Notre priorité : votre satisfaction, une exécution rapide et une manipulation sûre de chaque commande.",stat:"À vos côtés, à chaque trajet",how:"Comment ça marche ?",howDesc:"Trois étapes simples pour recevoir votre commande.",steps:[["Contactez-nous","Écrivez-nous sur WhatsApp ou appelez-nous."],["Partagez votre commande","Indiquez ce qu’il faut livrer et où."],["Recevez votre livraison","Votre commande arrive en toute sécurité."]],contact:"Prêt à envoyer votre commande ?",contactDesc:"Remplissez les détails et nous ouvrirons un message WhatsApp prêt à envoyer.",fields:["Nom complet","Téléphone","Lieu de récupération","Destination","Description de la commande","Notes supplémentaires"],submit:"Envoyer via WhatsApp",error:"Veuillez remplir les champs obligatoires.",footer:"Rapide, sûr et toujours à l’heure.",rights:"Tous droits réservés.",menu:"Ouvrir le menu",close:"Fermer le menu"}
+} as const;
+const icons=[<AccessTimeRounded key="time"/>,<SpeedRounded key="speed"/>,<SecurityRounded key="safe"/>,<CheckCircleRounded key="reliable"/>], services=[<DirectionsBikeRounded key="bike"/>,<PersonRounded key="person"/>,<LocalMallRounded key="bag"/>,<NavigationRounded key="local"/>];
+export default function Home(){
+ const [lang,setLang]=useState<Lang>("ar"),[open,setOpen]=useState(false),[error,setError]=useState(false); const t=copy[lang],rtl=lang==="ar";
+ const theme=useMemo(()=>createTheme({direction:rtl?"rtl":"ltr",palette:{mode:"dark",primary:{main:"#f7b71d"}},typography:{fontFamily:rtl?"Cairo,Arial":"Poppins,Arial"}}),[rtl]);
+ const ids=["home","services","about","contact"]; const go=(id:string)=>{setOpen(false);document.getElementById(id)?.scrollIntoView({behavior:"smooth"})};
+ const submit=(e:FormEvent<HTMLFormElement>)=>{e.preventDefault();const f=new FormData(e.currentTarget), keys=["name","phone","pickup","destination","order"];if(keys.some(k=>!f.get(k)?.toString().trim())){setError(true);return}const x=t.fields; const msg=`*${rtl?"طلب توصيل جديد":"Nouvelle demande de livraison"}*\n\n${x[0]}: ${f.get("name")}\n${x[1]}: ${f.get("phone")}\n${x[2]}: ${f.get("pickup")}\n${x[3]}: ${f.get("destination")}\n${x[4]}: ${f.get("order")}\n${x[5]}: ${f.get("notes")||"-"}`;window.open(`${wa}?text=${encodeURIComponent(msg)}`,"_blank","noopener,noreferrer")};
+ return <ThemeProvider theme={theme}><CssBaseline/><main dir={rtl?"rtl":"ltr"} className={"site "+(rtl?"arabic":"french")}>
+ <header className="nav"><a className="logo" href="#home" onClick={()=>go("home")}><i><DirectionsBikeRounded/></i><b>OUS<span>SAMA</span><small>{t.brand}</small></b></a><nav className={open?"navlinks open":"navlinks"}>{t.nav.map((x,i)=><button key={ids[i]} onClick={()=>go(ids[i])}>{x}</button>)}<a className="nav-order" href={wa} target="_blank" rel="noreferrer">{t.order}<WhatsApp/></a></nav><div className="navtools"><button className="language" onClick={()=>setLang(lang==="ar"?"fr":"ar")}><LanguageRounded/>{lang==="ar"?"FR":"ع"}</button><IconButton className="menu" onClick={()=>setOpen(!open)} aria-label={open?t.close:t.menu}>{open?<CloseRounded/>:<MenuRounded/>}</IconButton></div></header>
+ <section id="home" className="hero"><div className="hero-art"/><i className="slash a"/><i className="slash b"/><div className="hero-content"><motion.p initial={{opacity:0,y:18}} animate={{opacity:1,y:0}} className="eyebrow"><span/>{t.eyebrow}</motion.p><motion.h1 initial={{opacity:0,y:24}} animate={{opacity:1,y:0}} transition={{delay:.08}}>{t.hero}</motion.h1><motion.p initial={{opacity:0,y:20}} animate={{opacity:1,y:0}} transition={{delay:.16}} className="hero-copy">{t.desc}</motion.p><motion.div initial={{opacity:0,y:20}} animate={{opacity:1,y:0}} transition={{delay:.24}} className="actions"><a href={wa} target="_blank" rel="noreferrer" className="button primary"><WhatsApp/>{t.whats}</a><a href={"tel:"+phone} className="button outline"><PhoneInTalkRounded/>{t.call}</a></motion.div><div className="hero-location"><LocationOnRounded/>{t.location}</div></div><div className="hero-stamp"><b>OE</b><small>{t.trust}</small></div></section>
+ <section className="strip"><p><i/> {t.trust}</p><p><LocationOnRounded/>{t.location}</p><a href={"tel:"+phone}><CallRounded/>0646398986</a></section>
+ <section className="section advantages"><Head t={t} title={t.why} desc={t.whyDesc}/><div className="benefit-grid">{t.advantages.map(([a,b],i)=><motion.article initial={{opacity:0,y:22}} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{delay:i*.08}} className="benefit" key={a}><div className="icon-box">{icons[i]}</div><h3>{a}</h3><p>{b}</p></motion.article>)}</div></section>
+ <section id="services" className="section services"><Head t={t} title={t.services} desc={t.serviceDesc}/><div className="service-grid">{t.serviceList.map(([a,b],i)=><motion.article whileHover={{y:-7}} className="service-card" key={a}><em>0{i+1}</em><div className="icon-box">{services[i]}</div><h3>{a}</h3><p>{b}</p><a href={wa} target="_blank" rel="noreferrer">{t.order} <span>→</span></a></motion.article>)}</div></section>
+ <section id="about" className="section about"><div className="about-photo"><p><DirectionsBikeRounded/> OUSSAMA<br/><span>EL OUAILY</span></p></div><div className="about-text"><p className="eyebrow"><span/>{t.brand}</p><h2>{t.about}</h2><p>{t.aboutDesc}</p><div className="about-line"><CheckCircleRounded/>{t.stat}</div><a href={wa} target="_blank" rel="noreferrer" className="text-link">{t.whats} <span>→</span></a></div></section>
+ <section className="section process"><Head t={t} title={t.how} desc={t.howDesc}/><div className="steps">{t.steps.map(([a,b],i)=><article key={a} className="step"><strong>0{i+1}</strong><div><h3>{a}</h3><p>{b}</p></div>{i<2&&<i/>}</article>)}</div></section>
+ <section id="contact" className="contact"><div className="contact-intro"><p className="eyebrow"><span/>{t.brand}</p><h2>{t.contact}</h2><p>{t.contactDesc}</p><a href={"tel:"+phone} className="contact-number"><PhoneInTalkRounded/>0646398986</a><p className="contact-place"><LocationOnRounded/>Chouiter, Marrakech, Morocco</p></div><form onSubmit={submit} noValidate><div className="form-grid">{t.fields.slice(0,5).map((x,i)=><TextField key={x} name={["name","phone","pickup","destination","order"][i]} label={x} required multiline={i===4} minRows={i===4?3:undefined}/>) }<TextField name="notes" label={t.fields[5]} multiline minRows={3}/></div>{error&&<p className="form-error">{t.error}</p>}<button className="button primary submit"><SendRounded/>{t.submit}</button></form></section>
+ <footer><div className="footer-brand"><i><DirectionsBikeRounded/></i><b>OUS<span>SAMA</span></b><p>{t.footer}</p></div><div className="footer-links">{t.nav.map((x,i)=><button onClick={()=>go(ids[i])} key={x}>{x}</button>)}</div><div className="footer-contact"><a href={"tel:"+phone}><PhoneInTalkRounded/>0646398986</a><a href={wa} target="_blank" rel="noreferrer"><WhatsApp/>WhatsApp</a></div><small>© 2026 Oussama Eloualy — {t.rights}</small></footer>
+ </main></ThemeProvider>
 }
+function Head({t,title,desc}:{t:(typeof copy)[Lang],title:string,desc:string}){return <div className="section-head centered"><p className="eyebrow"><span/>{t.brand}</p><h2>{title}</h2><p>{desc}</p></div>}
